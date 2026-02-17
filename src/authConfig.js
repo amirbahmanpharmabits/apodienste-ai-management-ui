@@ -1,28 +1,24 @@
 import { PublicClientApplication } from '@azure/msal-browser'
 
+export const ALLOWED_EMAIL = 'amirbahman.mohammadpanah@pharmabits.eu'
+
+const clientId = import.meta.env.VITE_ENTRA_CLIENT_ID || '1369de3e-5687-4c5a-b606-78537978bde0'
 const tenantId = import.meta.env.VITE_ENTRA_TENANT_ID || '0517a68b-2d9c-40df-9f3b-37561164a416'
-const clientId = import.meta.env.VITE_ENTRA_CLIENT_ID || ''
 const redirectUri = import.meta.env.VITE_ENTRA_REDIRECT_URI || window.location.origin
 
-export const msalConfig = {
+export const msalInstance = new PublicClientApplication({
   auth: {
     clientId,
     authority: `https://login.microsoftonline.com/${tenantId}`,
     redirectUri,
+    postLogoutRedirectUri: redirectUri,
   },
   cache: {
     cacheLocation: 'localStorage',
     storeAuthStateInCookie: false,
   },
-}
+})
 
 export const loginRequest = {
   scopes: ['openid', 'profile', 'email', 'User.Read'],
 }
-
-export const allowedDomains = (import.meta.env.VITE_ALLOWED_EMAIL_DOMAINS || 'pharmabits.eu,pharmabits.de')
-  .split(',')
-  .map((d) => d.trim().toLowerCase())
-  .filter(Boolean)
-
-export const msalInstance = new PublicClientApplication(msalConfig)
