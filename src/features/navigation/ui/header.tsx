@@ -1,84 +1,50 @@
-import { useState } from 'react'
-import { CircleUserRound, LogOut, RotateCcw } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
+import { useRef } from 'react'
+import { useLocation } from 'react-router-dom'
+import { Button } from 'primereact/button'
+import { OverlayPanel } from 'primereact/overlaypanel'
 
 type HeaderProps = {
   onLogout: () => Promise<void>
 }
 
 export function Header({ onLogout }: HeaderProps) {
-  const { t } = useTranslation()
-  const [open, setOpen] = useState(false)
-  const [showProfile, setShowProfile] = useState(false)
+  const location = useLocation()
+  const profileOverlayRef = useRef<OverlayPanel>(null)
+
+  const pageTitle = location.pathname.includes('/prompts') ? 'AI Prompts Management' : 'Profiles'
 
   return (
-    <header className="relative flex h-16 items-center justify-end border-b border-slate-200 bg-white px-6">
-      <div className="flex items-center gap-3 text-slate-600">
-        <button
-          className="rounded-full p-2 transition hover:bg-slate-100"
-          onClick={() => setOpen((v) => !v)}
-          type="button"
-        >
-          <CircleUserRound className="h-6 w-6" />
-        </button>
-
-        <button className="rounded-full p-2 transition hover:bg-slate-100" onClick={onLogout} type="button">
-          <LogOut className="h-5 w-5" />
-        </button>
-
-        <button className="rounded-full p-2 transition hover:bg-slate-100" type="button">
-          <RotateCcw className="h-5 w-5" />
-        </button>
+    <header className="flex h-16 items-center justify-between border-b border-slate-200 bg-white px-6">
+      <div>
+        <h1 className="m-0 text-xl font-semibold text-slate-800">{pageTitle}</h1>
       </div>
 
-      {open && (
-        <div className="absolute right-14 top-14 z-20 w-56 rounded-lg border border-slate-200 bg-white p-4 shadow-xl">
-          <p className="text-[28px] font-semibold text-slate-800">Kroos</p>
-          <p className="text-[22px] text-slate-700">Administrator</p>
-          <p className="text-[22px] text-slate-700">BackOffice Admin</p>
-          <button
-            className="mt-3 text-[24px] font-semibold text-[#2a5bff]"
-            onClick={() => {
-              setShowProfile(true)
-              setOpen(false)
-            }}
-            type="button"
-          >
-            {t('header.openProfile')}
-          </button>
-        </div>
-      )}
+      <div className="flex items-center gap-1">
+        <Button
+          text
+          rounded
+          icon="pi pi-user"
+          severity="secondary"
+          aria-label="Profile"
+          onClick={(e) => profileOverlayRef.current?.toggle(e)}
+        />
+        <Button text rounded icon="pi pi-sign-out" severity="secondary" aria-label="Logout" onClick={onLogout} />
+        <Button text rounded icon="pi pi-refresh" severity="secondary" aria-label="Refresh" />
 
-      {showProfile && (
-        <div className="fixed inset-0 z-30 grid place-items-center bg-black/25 p-4">
-          <div className="w-full max-w-[900px] rounded-xl border border-slate-300 bg-white shadow-2xl">
-            <div className="border-b border-slate-200 px-5 py-4 text-[32px] font-semibold text-slate-800">Kroos</div>
-            <div className="space-y-4 px-5 py-6 text-[26px] text-slate-700">
-              <div className="grid grid-cols-[200px_1fr]">
-                <span>{t('header.profileFields.name')}</span>
-                <strong>Toni, Kroos</strong>
-              </div>
-              <div className="grid grid-cols-[200px_1fr]">
-                <span>{t('header.profileFields.landline')}</span>
-                <a className="text-[#2a5bff] underline" href="#">Enter Landline</a>
-              </div>
-              <div className="grid grid-cols-[200px_1fr]">
-                <span>{t('header.profileFields.email')}</span>
-                <strong>h@amirbahmanmail.com</strong>
-              </div>
-            </div>
-            <div className="flex justify-end px-5 pb-5">
-              <button
-                className="rounded-lg bg-[#2a5bff] px-4 py-2 text-[22px] font-semibold text-white"
-                onClick={() => setShowProfile(false)}
-                type="button"
-              >
-                Close
-              </button>
-            </div>
+        <OverlayPanel ref={profileOverlayRef}>
+          <div className="min-w-48">
+            <div className="text-base font-semibold text-slate-900">Kroos</div>
+            <div className="mt-1 text-sm text-slate-600">Administrator</div>
+            <div className="text-sm text-slate-600">BackOffice Admin</div>
+            <button
+              className="mt-3 border-0 bg-transparent p-0 text-sm font-semibold text-[#2a5bff]"
+              type="button"
+            >
+              Open profile
+            </button>
           </div>
-        </div>
-      )}
+        </OverlayPanel>
+      </div>
     </header>
   )
 }
