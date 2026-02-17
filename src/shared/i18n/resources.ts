@@ -27,18 +27,32 @@ export const resources = {
         empty: 'No profiles found'
       },
       prompts: {
-        title: 'Prompts',
+        title: 'AI Prompts Management',
         subtitle: 'Create and manage reusable AI prompts',
+        loading: 'Loading prompts...',
+        empty: 'No prompts found',
+        deleteText: 'Are you sure you want to delete this prompt?',
+        columns: {
+          name: 'Name',
+          content: 'Content',
+          createdAt: 'Created At',
+          actions: 'Actions'
+        },
         fields: {
-          title: 'Title',
+          name: 'Name',
           content: 'Prompt content'
         },
         actions: {
-          save: 'Save prompt'
+          create: 'Create New Prompt',
+          edit: 'Edit Prompt',
+          delete: 'Delete Prompt',
+          save: 'Save',
+          cancel: 'Cancel',
+          confirmDelete: 'Confirm'
         },
-        success: 'Prompt saved locally (demo).',
+        success: 'Prompt saved successfully.',
         validation: {
-          titleMin: 'Title must be at least 3 characters.',
+          nameMin: 'Name must be at least 3 characters.',
           contentMin: 'Prompt content must be at least 10 characters.'
         }
       },
@@ -75,18 +89,32 @@ export const resources = {
         empty: 'Keine Profile gefunden'
       },
       prompts: {
-        title: 'Prompts',
+        title: 'AI Prompts Management',
         subtitle: 'Wiederverwendbare AI-Prompts erstellen und verwalten',
+        loading: 'Prompts werden geladen...',
+        empty: 'Keine Prompts gefunden',
+        deleteText: 'Möchten Sie diesen Prompt wirklich löschen?',
+        columns: {
+          name: 'Name',
+          content: 'Inhalt',
+          createdAt: 'Erstellt am',
+          actions: 'Aktionen'
+        },
         fields: {
-          title: 'Titel',
+          name: 'Name',
           content: 'Prompt-Inhalt'
         },
         actions: {
-          save: 'Prompt speichern'
+          create: 'Create New Prompt',
+          edit: 'Prompt bearbeiten',
+          delete: 'Prompt löschen',
+          save: 'Speichern',
+          cancel: 'Abbrechen',
+          confirmDelete: 'Bestätigen'
         },
-        success: 'Prompt lokal gespeichert (Demo).',
+        success: 'Prompt erfolgreich gespeichert.',
         validation: {
-          titleMin: 'Titel muss mindestens 3 Zeichen lang sein.',
+          nameMin: 'Name muss mindestens 3 Zeichen lang sein.',
           contentMin: 'Prompt-Inhalt muss mindestens 10 Zeichen lang sein.'
         }
       },
