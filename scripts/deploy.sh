@@ -14,7 +14,7 @@ git --no-pager diff --stat || true
 echo ""
 
 read -r -p "Do you want deploy? (yes/deploy): " ANSWER
-if [[ "$ANSWER" != "yes" && "$ANSWER" != "deploy" && "$ANSWER" != "yes for deploy" ]]; then
+if [[ "$ANSWER" != "yes" && "$ANSWER" != "deploy" && "$ANSWER" != "yes for deploy" && "$ANSWER" != "deply" ]]; then
   echo "Deployment cancelled."
   exit 0
 fi
