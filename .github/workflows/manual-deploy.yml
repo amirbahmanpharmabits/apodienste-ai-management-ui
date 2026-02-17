@@ -1,0 +1,40 @@
+name: Manual Deploy to Azure Web App
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+      - name: Create zip package
+        run: |
+          cd dist
+          zip -r ../release.zip .
+
+      - name: Deploy via Kudu ZipDeploy
+        env:
+          APP_NAME: ${{ secrets.AZURE_WEBAPP_NAME }}
+          SCM_USERNAME: ${{ secrets.AZURE_WEBAPP_SCM_USERNAME }}
+          SCM_PASSWORD: ${{ secrets.AZURE_WEBAPP_SCM_PASSWORD }}
+        run: |
+          curl -sS -X POST \
+            -u "$SCM_USERNAME:$SCM_PASSWORD" \
+            -H "Content-Type: application/zip" \
+            --data-binary @release.zip \
+            "https://${APP_NAME}.scm.azurewebsites.net/api/zipdeploy"
