@@ -7,7 +7,12 @@ export const resources = {
         prompts: 'Prompts'
       },
       header: {
-        searchPlaceholder: 'Search by profile name or prompt title...'
+        openProfile: 'Open profile',
+        profileFields: {
+          name: 'Name',
+          landline: 'Landline',
+          email: 'Email'
+        }
       },
       auth: {
         loading: 'Redirecting to Microsoft login...',
@@ -19,12 +24,7 @@ export const resources = {
         title: 'Profiles',
         subtitle: 'Manage profile catalog and status',
         loading: 'Loading profiles...',
-        empty: 'No profiles found',
-        columns: {
-          name: 'Name',
-          status: 'Status',
-          updatedAt: 'Updated'
-        }
+        empty: 'No profiles found'
       },
       prompts: {
         title: 'Prompts',
@@ -43,8 +43,7 @@ export const resources = {
         }
       },
       common: {
-        logout: 'Logout',
-        language: 'Language'
+        logout: 'Logout'
       }
     }
   },
@@ -56,7 +55,12 @@ export const resources = {
         prompts: 'Prompts'
       },
       header: {
-        searchPlaceholder: 'Nach Profilname oder Prompt-Titel suchen...'
+        openProfile: 'Profil öffnen',
+        profileFields: {
+          name: 'Name',
+          landline: 'Festnetz',
+          email: 'E-Mail'
+        }
       },
       auth: {
         loading: 'Weiterleitung zum Microsoft-Login...',
@@ -68,12 +72,7 @@ export const resources = {
         title: 'Profile',
         subtitle: 'Profilkatalog und Status verwalten',
         loading: 'Profile werden geladen...',
-        empty: 'Keine Profile gefunden',
-        columns: {
-          name: 'Name',
-          status: 'Status',
-          updatedAt: 'Aktualisiert'
-        }
+        empty: 'Keine Profile gefunden'
       },
       prompts: {
         title: 'Prompts',
@@ -92,8 +91,7 @@ export const resources = {
         }
       },
       common: {
-        logout: 'Abmelden',
-        language: 'Sprache'
+        logout: 'Abmelden'
       }
     }
   }

@@ -19,11 +19,18 @@
 - Allowed user email: `amirbahman.mohammadpanah@pharmabits.eu`
 
 ## UI/UX Direction
-- Colors inspired by apodienste branding (blue-first)
-- First layout feature: Header + Sidebar + Main content
-- Sidebar initial menu items:
+- Color direction aligned to apodienste blue identity
+- Header: only profile actions and logout controls
+- Sidebar: premium left navigation with only two main modules
   - Profiles
   - Prompts
+- Profiles page: operational table style similar to backoffice screenshot
+  - status tabs
+  - filter row
+  - badge-style cells
+  - pDL icon cluster
+  - action column button
+- Profile menu + profile details popup in header
 
 ## Architecture and Structure
 - `src/app`: router, layout, providers
@@ -36,13 +43,7 @@
 - `src/shared/ui`: reusable UI primitives
 - `src/shared/lib`: utility functions
 
-## Quality Standards
-- Strict TypeScript
-- Reusable components over page-specific duplication
-- Feature isolation and scalable module boundaries
-- Stable patterns for adding future modules
-
-## Phase 1 Scope (This implementation)
+## Phase 1 Scope
 - Implement app shell (header/sidebar/main)
 - Implement Profiles and Prompts routes/pages
 - Implement EN/DE translation baseline

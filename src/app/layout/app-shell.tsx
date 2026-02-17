@@ -11,11 +11,11 @@ export function AppShell() {
   }
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="flex min-h-screen bg-[#f5f7fb]">
       <Sidebar />
       <div className="flex min-w-0 flex-1 flex-col">
         <Header onLogout={onLogout} />
-        <main className="flex-1 overflow-auto p-6">
+        <main className="flex-1 overflow-auto p-4">
           <Outlet />
         </main>
       </div>
